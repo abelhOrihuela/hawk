@@ -5,6 +5,7 @@ const Organization = require('./organization')
 const Role = require('./role')
 const Group = require('./group')
 const AppConfig = require('./app-config')
+const Translation = require('./translation')
 // #Import
 
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
   Organization,
   Role,
   Group,
-  AppConfig// #Exports
+  AppConfig,
+  Translation// #Exports
 }

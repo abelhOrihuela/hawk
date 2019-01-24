@@ -1,0 +1,52 @@
+[
+  {
+    "id": "marbleseeds",
+    "module": "general",
+    "content": "Welcome to marbleseeds"
+  },
+  {
+    "id": "welcome",
+    "module": "general",
+    "content": "Welcome"
+  },
+  {
+    "id": "home",
+    "module": "general",
+    "content": "Dashboard"
+  },
+  {
+    "id": "regards",
+    "module": "general",
+    "content": "Hi {name}!"
+  },
+  {
+    "id": "postsListTitle",
+    "module": "general",
+    "content": "List of posts"
+  },
+  {
+    "id": "profile",
+    "module": "general",
+    "content": "Profile"
+  },
+  {
+    "id": "security",
+    "module": "general",
+    "content": "Security"
+  },
+  {
+    "id": "name",
+    "module": "general",
+    "content": "Name"
+  },
+  {
+    "id": "email",
+    "module": "general",
+    "content": "Email"
+  },
+  {
+    "id": "lang",
+    "module": "general",
+    "content": "Language"
+  }
+]
