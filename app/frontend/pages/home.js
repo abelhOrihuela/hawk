@@ -2,6 +2,8 @@ import React from 'react'
 import PageComponent from '~base/page-component'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
+import {forcePublic} from '~base/middlewares/'
+
 class Home extends PageComponent {
   constructor (props) {
     super(props)
@@ -56,6 +58,7 @@ class Home extends PageComponent {
 Home.config({
   path: '/',
   title: 'Home',
+  validate: forcePublic,
   exact: true
 })
 
