@@ -1,5 +1,5 @@
 const Route = require('lib/router/route')
-const synchronizeTranslations = require('tasks/synchronize-translations')
+const synchronizeTranslations = require('tasks/translations/synchronize-translations')
 
 module.exports = new Route({
   method: 'post',

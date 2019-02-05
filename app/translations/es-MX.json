@@ -1,62 +1,86 @@
 [
   {
     "id": "marbleseeds",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Bienvenido a marbleseeds"
   },
   {
     "id": "welcome",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Bienvenido"
   },
   {
     "id": "home",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Inicio"
   },
   {
     "id": "regards",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "¡Hola {name}!"
   },
   {
     "id": "dashboardTitle",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Dashboard"
   },
   {
     "id": "postsListTitle",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Lista de posts\n"
   },
   {
     "id": "testLabel",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Test"
   },
   {
     "id": "profile",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Perfil"
   },
   {
     "id": "security",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Seguridad"
   },
   {
     "id": "name",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Nombre"
   },
   {
     "id": "email",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Correo"
   },
   {
     "id": "lang",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Lenguaje"
   }
 ]

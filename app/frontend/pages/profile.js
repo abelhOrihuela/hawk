@@ -1,6 +1,6 @@
 import React from 'react'
 import PageComponent from '~base/page-component'
-import {loggedIn} from '~base/middlewares/'
+import { loggedIn } from '~base/middlewares/'
 import UpdatePasswordForm from '~base/components/update-password'
 import UpdateProfileForm from '~base/components/update-profile'
 import TokensList from '~base/components/token-list'
@@ -18,7 +18,7 @@ class Profile extends PageComponent {
     const basicStates = super.getBasicStates()
     if (basicStates) { return basicStates }
 
-    let {intl} = this.props
+    let { intl } = this.props
 
     return (
       <section className='section'>
@@ -26,7 +26,7 @@ class Profile extends PageComponent {
           <div className='column is-full is-one-third-desktop'>
             <div className='panel is-bg-white'>
               <p className='panel-heading'>
-                <FormattedMessage id="general.profile" />
+                <FormattedMessage id='general.profile' />
               </p>
               <div className='panel-block panel-body'>
                 <UpdateProfileForm intl={intl} />
@@ -34,7 +34,7 @@ class Profile extends PageComponent {
             </div>
             <div className='panel is-bg-white'>
               <p className='panel-heading'>
-                <FormattedMessage id="general.security" />
+                <FormattedMessage id='general.security' />
               </p>
               <div className='panel-block panel-body'>
                 <UpdatePasswordForm />

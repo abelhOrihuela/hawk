@@ -1,5 +1,5 @@
 const Route = require('lib/router/route')
-const backupTranslations = require('tasks/backup-translations')
+const backupTranslations = require('tasks/translations/backup-translations')
 
 module.exports = new Route({
   method: 'post',

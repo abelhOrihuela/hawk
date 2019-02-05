@@ -42,7 +42,9 @@ class App extends Component {
     let format = {}
     if (!messages) return format
     for (let message of messages) {
-      format[`${message.module}.${message.id}`] = message.content
+      for (let module of message.modules) {
+        format[`${module}.${message.id}`] = message.content
+      }
     }
     return format
   }

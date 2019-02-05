@@ -6,7 +6,7 @@ const dataTables = require('mongoose-datatables')
 const translationSchema = new Schema({
   id: { type: String },
   lang: { type: String },
-  module: { type: String },
+  modules: { type: [String] },
   content: { type: String },
   uuid: { type: String, default: v4 },
   isDeleted: { type: Boolean, default: false }
@@ -19,7 +19,7 @@ translationSchema.methods.toPublic = function () {
     uuid: this.uuid,
     id: this.id,
     lang: this.lang,
-    module: this.module,
+    modules: this.modules,
     content: this.content
   }
 }
@@ -29,7 +29,7 @@ translationSchema.methods.toAdmin = function () {
     uuid: this.uuid,
     id: this.id,
     lang: this.lang,
-    module: this.module,
+    modules: this.modules,
     content: this.content
   }
 }

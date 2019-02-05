@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import PageComponent from '~base/page-component'
 import api from '~base/api'
 import { Redirect } from 'react-router-dom'
@@ -9,58 +8,56 @@ import 'react-super-treeview/dist/style.scss'
 import { loggedIn } from '~base/middlewares/'
 import { BaseTable } from '~base/components/base-table'
 import BaseModal from '~base/components/base-modal'
-import { error, success } from '~base/components/toast'
+import { success } from '~base/components/toast'
 import ConfirmButton from '~base/components/confirm-button'
-
-const modules = [
-  { id: 'general', name: 'General' },
-  { id: 'orders', name: 'Órdenes' }
-]
 
 class Translations extends PageComponent {
   constructor (props) {
     super(props)
-
     this.state = {
       labels: [],
       classNameModal: '',
       lang: null,
+      modules: [],
       module: null,
       currentLabel: null,
       node: null,
       depth: null,
-        data: [
-            {
-                id: 'es-MX',
-                name: 'es-MX',
-                children: modules
-            },
-            {
-                id: 'en-US',
-                name: 'en-US',
-                children: modules
-            }
-        ]
+      data: []
     }
   }
 
   async onPageEnter () {
-    const data = await this.load()
+    let data = await this.load()
+    data = data.map(l => {
+      return {
+        id: l,
+        name: l
+      }
+    })
 
-    return data
+    return {
+      modules: data,
+      data: [
+        {
+          id: 'es-MX',
+          name: 'es-MX',
+          children: data
+        },
+        {
+          id: 'en-US',
+          name: 'en-US',
+          children: data
+        }
+      ]
+    }
   }
 
   async load () {
-    var url = '/admin/dashboard/'
+    var url = '/admin/translations/'
     const body = await api.get(url)
 
-    return {
-      orgsCount: body.orgsCount,
-      usersCount: body.usersCount,
-      rolesCount: body.rolesCount,
-      groupsCount: body.groupsCount,
-      todayIs: moment().format('DD - MMMM YYYY')
-    }
+    return body.data
   }
 
   getColumns () {
@@ -71,12 +68,21 @@ class Translations extends PageComponent {
         'default': 'N/A'
       },
       {
-        'title': 'Modulo',
-        'property': 'module',
-        'default': 'N/A'
+        'title': 'Modules',
+        'property': 'modules',
+        'default': 'N/A',
+        formatter: (row) => {
+          return (
+            <div>
+              {
+                row.modules.join(', ')
+              }
+            </div>
+          )
+        }
       },
       {
-        'title': 'Contenido',
+        'title': 'Content',
         'property': 'content',
         'default': 'N/A'
       },
@@ -91,7 +97,7 @@ class Translations extends PageComponent {
             </div>
             <div className='column'>
               <ConfirmButton
-                title='Eliminar etiqueta'
+                title='Delete translation'
                 className='button is-danger'
                 classNameButton='button is-danger'
                 onConfirm={() => this.handleRemove(row)}
@@ -106,7 +112,6 @@ class Translations extends PageComponent {
   }
 
   setNode (node, depth) {
-
     if (node.isExpanded) {
       this.setState({
         node,
@@ -152,9 +157,9 @@ class Translations extends PageComponent {
   }
 
   getModal () {
-    let { currentLabel, lang, module } = this.state
+    let { currentLabel, lang, modules, module } = this.state
     return (<BaseModal
-      title={'Etiqueta'}
+      title={'Translation'}
       className={'is-active'}
       hideModal={() => this.hideModal()}
     >
@@ -177,30 +182,30 @@ class Translations extends PageComponent {
   }
 
   async handleBackup () {
-    const body = await api.post( `/admin/translations/backup`)
+    await api.post(`/admin/translations/backup`)
     success()
   }
 
   async handleSynchronize () {
-    const body = await api.post( `/admin/translations/synchronize`)
+    await api.post(`/admin/translations/synchronize`)
     success()
   }
 
   async handleRemove (row) {
-    const body = await api.del( `/admin/translations/${row.uuid}`)
+    await api.del(`/admin/translations/${row.uuid}`)
     success()
     this.getLabels()
   }
 
   render () {
-    const { labels, lang, module } = this.state
+    const { labels, lang } = this.state
 
     if (this.state.redirect) {
       return <Redirect to='/log-in' />
     }
 
     return (<div className='section'>
-      <div className='columns controls message-body is-paddingless'>
+      <div className='columns'>
         <div className='column has-text-right'>
           {
             lang && (<button
@@ -210,7 +215,7 @@ class Translations extends PageComponent {
               <span className='icon'>
                 <i className='fa fa-plus' />
               </span>
-              <span>Nueva etiqueta</span>
+              <span>New translation</span>
             </button>)
           }
 

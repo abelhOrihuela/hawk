@@ -1,52 +1,72 @@
 [
   {
     "id": "marbleseeds",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Welcome to marbleseeds"
   },
   {
     "id": "welcome",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Welcome"
   },
   {
     "id": "home",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Dashboard"
   },
   {
     "id": "regards",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Hi {name}!"
   },
   {
     "id": "postsListTitle",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "List of posts"
   },
   {
     "id": "profile",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Profile"
   },
   {
     "id": "security",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Security"
   },
   {
     "id": "name",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Name"
   },
   {
     "id": "email",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Email"
   },
   {
     "id": "lang",
-    "module": "general",
+    "modules": [
+      "general"
+    ],
     "content": "Language"
   }
 ]

@@ -1,9 +1,9 @@
-require('../config')
+require('../../config')
 require('lib/databases/mongo')
 
 const Task = require('lib/task')
 const { Translation } = require('models')
-const fs = require('fs')
+const fs = require('fs-extra')
 
 const task = new Task(async function (argv) {
   const translationsPath = './app/translations'
@@ -17,15 +17,15 @@ const task = new Task(async function (argv) {
     let data = fs.readFileSync(translationsPath + '/' + lang + '.json')
     let translations = JSON.parse(data.toString())
     for (let t of translations) {
-      let translation = await Translation.findOne({ id: t.id, module: t.module, lang: lang })
-
+      let translation = await Translation.findOne({ id: t.id, lang: lang })
       if (translation) {
         translation.content = t.content
+        translation.modules = t.modules
         await translation.save()
       } else {
         translation = await Translation.create({
           id: t.id,
-          module: t.module,
+          modules: t.modules,
           content: t.content,
           lang: lang
         })
