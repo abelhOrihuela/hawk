@@ -1,6 +1,7 @@
 import React from 'react'
-
 import PageComponent from '~base/page-component'
+
+import storage from '~base/storage'
 import tree from '~core/tree'
 import api from '~base/api'
 import Link from '~base/router/link'
@@ -25,9 +26,19 @@ const schema = {
 class LogIn extends PageComponent {
   constructor (props) {
     super(props)
+
+    const expiredSession = tree.get('expiredSession')
+    tree.set('expiredSession', false)
+    tree.commit()
+
     this.state = {
-      ...this.baseState
+      ...this.baseState,
+      expiredSession
     }
+  }
+
+  removeExpiredSession () {
+    this.setState({expiredSession: false})
   }
 
   async submitHandler (formData) {
@@ -37,14 +48,24 @@ class LogIn extends PageComponent {
   }
 
   successHandler (data) {
-    window.localStorage.setItem('jwt', data.jwt)
+    storage.set('jwt', data.jwt)
     tree.set('jwt', data.jwt)
     tree.set('user', data.user)
     tree.set('loggedIn', true)
     tree.commit()
+    this.languageSettingDispatcher(data.user.lang || 'es-MX')
 
     this.props.history.push('/app', {})
+
   }
+
+  languageSettingDispatcher (lang) {
+     window.dispatchEvent(
+       new CustomEvent('lang', {
+         detail: { lang },
+       })
+     )
+   }
 
   render () {
     const basicStates = super.getBasicStates()
@@ -59,6 +80,18 @@ class LogIn extends PageComponent {
           </Link>
         </p>
       )
+    }
+
+    let expiredSession
+    if (this.state.expiredSession) {
+      expiredSession = <div className='columns'>
+        <div className='column'>
+          <div className='notification is-warning'>
+            <button className='delete' onClick={() => this.removeExpiredSession()} />
+            Session expired
+          </div>
+        </div>
+      </div>
     }
 
     return (
@@ -76,6 +109,7 @@ class LogIn extends PageComponent {
           </header>
           <div className='card-content'>
             <div className='content'>
+              {expiredSession}
               <div className='columns'>
                 <div className='column'>
                   <MarbleForm
